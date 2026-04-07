@@ -63,6 +63,40 @@ class _MahasiswaPageState extends State<MahasiswaPage> {
   int? selectedProdiId;
 
   void saveData() {
+    // Validasi field kosong
+    if (namaController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Nama tidak boleh kosong!"),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
+    if (nimController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("NIM tidak boleh kosong!"),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
+    if (selectedProdiId == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Pilih prodi terlebih dahulu!"),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
     final mahasiswa = Mahasiswa(
       nama: namaController.text,
       nim: nimController.text,
@@ -71,8 +105,22 @@ class _MahasiswaPageState extends State<MahasiswaPage> {
 
     if (editIndex == null) {
       box.add(mahasiswa);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Data berhasil ditambahkan!"),
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 2),
+        ),
+      );
     } else {
       box.putAt(editIndex!, mahasiswa);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Data berhasil diperbarui!"),
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 2),
+        ),
+      );
       editIndex = null;
     }
 
@@ -93,6 +141,13 @@ class _MahasiswaPageState extends State<MahasiswaPage> {
 
   void deleteData(int index) {
     box.deleteAt(index);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Data berhasil dihapus!"),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 2),
+      ),
+    );
   }
 
   void clearForm() {
@@ -108,7 +163,7 @@ class _MahasiswaPageState extends State<MahasiswaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("CRUD Mahasiswa - Hive")),
+      appBar: AppBar(title: Text("Relasi Pada Hive - 23106050077")),
       body: Padding(
         padding: EdgeInsets.all(12),
         child: Column(
