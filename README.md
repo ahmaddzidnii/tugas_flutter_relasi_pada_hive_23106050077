@@ -1,3 +1,5 @@
-# relasi_pada_hive
+# Tugas Relasi Pada Hive di Flutter.
 
-A new Flutter project.
+- Ahmad Zidni Hidayat
+- 23106050077
+- Pemrograman Platform Bergerak A
